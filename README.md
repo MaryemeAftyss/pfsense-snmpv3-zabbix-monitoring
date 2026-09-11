@@ -151,4 +151,4 @@ pfsense-snmpv3-zabbix-monitoring/
 
 ## Auteure
 
-**Maryeme Aftyss**.
+**Maryeme Aftyss** Ingénieure d'État en cybersécurité
