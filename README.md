@@ -51,25 +51,25 @@ flowchart LR
 
 Le tableau de bord confirme le fonctionnement de pfSense dans l'environnement virtualisé avant l'intégration à la plateforme de supervision.
 
-![Tableau de bord pfSense](images/01-pfsense-dashboard.png)
+![Tableau de bord pfSense](01-pfsense-dashboard.png)
 
 ### 2. Installation de NET-SNMP
 
 Le paquet **NET-SNMP** est installé depuis le gestionnaire de paquets de pfSense. Il fournit le service `snmpd` nécessaire pour répondre aux requêtes du serveur Zabbix.
 
-![Installation réussie de NET-SNMP](images/02-net-snmp-installation.png)
+![Installation réussie de NET-SNMP](02-net-snmp-installation.png)
 
 ### 3. Activation du service SNMP
 
 Le service SNMP est activé dans pfSense. La configuration permet de définir l'interface d'écoute et utilise le port UDP **161**, port standard des requêtes SNMP.
 
-![Configuration générale du service SNMP](images/03-snmp-service-configuration.png)
+![Configuration générale du service SNMP](03-snmp-service-configuration.png)
 
 ### 4. Création d'un utilisateur SNMPv3
 
 Un utilisateur dédié à Zabbix est créé dans NET-SNMP. L'utilisation d'un compte spécifique facilite le contrôle des accès et évite d'employer SNMPv1 ou SNMPv2c, qui reposent sur une simple chaîne de communauté.
 
-![Création de l'utilisateur SNMPv3](images/04-snmpv3-user.png)
+![Création de l'utilisateur SNMPv3](04-snmpv3-user.png)
 
 > Les secrets d'authentification et de confidentialité ne doivent jamais être publiés dans le dépôt GitHub.
 
@@ -83,17 +83,17 @@ Dans Zabbix, un nouvel hôte pfSense est créé avec :
 - la version **SNMPv3** ;
 - un modèle pfSense adapté à la collecte SNMP.
 
-![Configuration de l'hôte pfSense dans Zabbix](images/05-zabbix-host-configuration.png)
+![Configuration de l'hôte pfSense dans Zabbix](05-zabbix-host-configuration.png)
 
 ### 6. Validation de la supervision
 
 L'hôte pfSense apparaît comme activé et son interface SNMP est disponible. Zabbix reçoit des données et propose des éléments, des problèmes, des graphiques et un tableau de bord associés.
 
-![État de l'hôte pfSense dans Zabbix](images/06-zabbix-host-status.png)
+![État de l'hôte pfSense dans Zabbix](06-zabbix-host-status.png)
 
 Les graphiques permettent ensuite de suivre l'évolution des indicateurs collectés, notamment la disponibilité de l'agent SNMP et différents services de pfSense.
 
-![Graphiques SNMP dans Zabbix](images/07-zabbix-snmp-graphs.png)
+![Graphiques SNMP dans Zabbix](07-zabbix-snmp-graphs.png)
 
 ## Données supervisées
 
@@ -133,21 +133,6 @@ Selon les éléments et modèles activés dans Zabbix, cette solution permet not
 - Créer un tableau de bord Zabbix dédié aux interfaces, au trafic, au CPU et à la mémoire de pfSense.
 - Ajouter des seuils et notifications adaptés aux incidents critiques.
 - Sauvegarder et versionner une configuration anonymisée du laboratoire.
-
-## Structure du dépôt
-
-```text
-pfsense-snmpv3-zabbix-monitoring/
-├── README.md
-└── images/
-    ├── 01-pfsense-dashboard.png
-    ├── 02-net-snmp-installation.png
-    ├── 03-snmp-service-configuration.png
-    ├── 04-snmpv3-user.png
-    ├── 05-zabbix-host-configuration.png
-    ├── 06-zabbix-host-status.png
-    └── 07-zabbix-snmp-graphs.png
-```
 
 ## Auteure
 
